@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Phish Guard",
+        "type": "Mobile Application",
+        "context": "Hackathon",
+        "description": "Helps users detect phishing attacks in emails and SMS messages."
+    },
+    {
+        "name": "NWR Business Intelligence Portal",
+        "type": "Web Portal",
+        "context": "Hackathon",
+        "description": "Business Intelligence Portal integrating with the CiMSO Innkeeper ERP."
+    },
+    {
+        "name": "Student Internship Tracking Platform",
+        "type": "Web Application",
+        "context": "Group Project",
+        "description": "Django web app with student, lecturer and admin roles."
+    },
+    {
+        "name": "Food Delivery Microservices",
+        "type": "Backend Services",
+        "context": "Group Project",
+        "description": "Microservices-based food delivery system, where I built the Payment Service in Ballerina."
+    },
+    {
+        "name": "Valentine's Garage",
+        "type": "Android Application",
+        "context": "Academic",
+        "description": "Garage management system built as an academic assignment."
+    },
+    {
+        "name": "Namibia Rentals App",
+        "type": "Mobile Application",
+        "context": "Independent",
+        "description": "Rentals and property listings app for apartments, guest houses, lodges, houses and land."
+    }
+]

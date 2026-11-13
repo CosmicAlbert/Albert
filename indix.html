@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabot Albert, Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel= "icon" href = "Profile.jpeg" type = "image/png">
+</head>
+
+<body>
+
+    <header>
+        <h2>Nabot Albert</h2>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#data">Data</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <button id="theme-toggle" type="button">Dark Mode</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="intro">HELLO, WELCOME TO MY WEBSITE</p>
+                <hr>
+
+                <h1>Hi, I'm Nabot Albert</h1>
+
+                <h3>Computer Science Student and Aspiring Software Developer</h3>
+
+                <p>
+                    I'm a Computer Science student at NUST who enjoys
+                    programming, learning new technologies and building
+                    applications that solve real problems.
+                </p>
+
+                <div class="buttons">
+                    <a href="#projects" class="btn">See my projects</a>
+                    <a href="#contact" class="btn">Get in touch</a>
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+                <img src="Profile.jpeg" alt="Photo of Nabot Albert">
+            </div>
+
+        </section>
+
+        <hr>
+
+        <section id="about">
+
+            <h2>About Me</h2>
+
+            <div class="card">
+                <p>
+                    I'm interested in software development and technology.
+                    I enjoy working on different projects, improving my
+                    programming skills and learning how things work.
+                </p>
+
+                <p>
+                    My goal is to become a skilled software developer
+                    and gain experience working on real-world systems.
+                </p>
+            </div>
+
+        </section>
+
+        <hr>
+
+        <section id="skills">
+
+            <h2>Skills</h2>
+
+            <div class="card">
+                <p>Some technologies and tools I have worked with:</p>
+
+                <ul class="skills-list">
+                    <li>Java</li>
+                    <li>HTML and CSS</li>
+                    <li>JavaScript</li>
+                    <li>SQL and Databases</li>
+                    <li>Git and GitHub</li>
+                    <li>Ballerina</li>
+                    <li>Flutter</li>
+                    <li>Dart</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <hr>
+
+        <section id="data">
+
+            <h2>Project Data</h2>
+
+            <p>This table is loaded from a JSON file using AJAX. Search it or click a column heading to sort.</p>
+
+            <div class="card table-card">
+
+                <div class="table-toolbar">
+                    <input type="search" id="data-search" placeholder="Search projects..." aria-label="Search projects">
+                    <span id="data-count"></span>
+                </div>
+
+                <div id="data-status" class="data-status" role="status">
+                    <span id="data-message">Loading projects...</span>
+                    <button type="button" id="data-retry" class="retry-btn is-hidden">Try again</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="timeline-table data-table is-hidden" id="data-table">
+                        <thead>
+                            <tr>
+                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="name">Project</button></th>
+                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="type">Type</button></th>
+                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="context">Context</button></th>
+                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="description">Description</button></th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-body"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <section id="projects">
+
+            <h2>My Projects</h2>
+
+            <p>Here are some of the projects I have worked on.</p>
+
+            <div class="project-container">
+
+                <div class="project-card">
+
+                    <img src="phish-guard.jpeg" alt="Phish Guard application screenshot">
+
+                    <div class="project-info">
+
+                        <h3>Phish Guard</h3>
+
+                        <p class="project-type">Mobile Application</p>
+
+                        <p>
+                            Phish Guard is a Flutter-based application
+                            designed to help users detect phishing attacks
+                            in emails and SMS messages.
+
+                            It uses AI-assisted analysis to identify
+                            suspicious messages, highlight warning signs
+                            and help users stay safe online.
+                        </p>
+
+                        <div class="tech">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>AI</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="project-card">
+
+                    <img src="greg-analytics.jpeg" alt="Greg Analytics dashboard screenshot">
+
+                    <div class="project-info">
+
+                        <h3>Greg Analytics</h3>
+
+                        <p class="project-type">Analytics Application</p>
+
+                        <p>
+                            Greg Analytics is an exercise tracking and
+                            analytics tool designed to help users monitor
+                            their physical activities and performance.
+
+                            It provides an overview of exercise progress,
+                            important metrics and performance information
+                            to help users understand their activity.
+                        </p>
+
+                        <div class="tech">
+                            <span>Analytics</span>
+                            <span>Data Tracking</span>
+                            <span>Dashboard</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <section id="contact">
+
+            <h2>Contact</h2>
+
+            <p>
+                Email:
+                <a href="mailto:nabottuhafeni@gmail.com">nabottuhafeni@gmail.com</a>
+            </p>
+
+            <p>
+                Phone:
+                <a href="tel:0814516986">0814516986</a>
+            </p>
+
+            <p>
+                GitHub:
+                <a href="https://github.com/" target="_blank" rel="noopener">My GitHub</a>
+            </p>
+
+            <p>
+                LinkedIn:
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener">My LinkedIn</a>
+            </p>
+
+        </section>
+
+        <p>&copy; <span id="year"></span> Nabot Albert</p>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
