@@ -1,3 +1,4 @@
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -7,11 +8,13 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
         if (!target) return;
 
-        event.preventDefault(); 
+        event.preventDefault();
         target.scrollIntoView({ behavior: "smooth", block: "start" });
         history.pushState(null, "", targetId);
     });
 });
+
+
 
 const themeButton = document.getElementById("theme-toggle");
 
@@ -21,6 +24,7 @@ function applyTheme(isDark) {
 }
 
 let savedTheme = null;
+
 try {
     savedTheme = localStorage.getItem("theme");
 } catch (error) {
@@ -31,12 +35,14 @@ applyTheme(savedTheme === "dark");
 
 themeButton.addEventListener("click", () => {
     const isDark = !document.body.classList.contains("dark-mode");
+
     applyTheme(isDark);
 
     try {
         localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch (error) {}
 });
+
 
 const dataTable = document.getElementById("data-table");
 const dataBody = document.getElementById("data-body");
@@ -45,18 +51,8 @@ const dataMessage = document.getElementById("data-message");
 const dataRetry = document.getElementById("data-retry");
 const dataSearch = document.getElementById("data-search");
 const dataCount = document.getElementById("data-count");
-const sortButtons = document.querySelectorAll(".sort-btn");
-
-const columns = [
-    { key: "name", label: "Project" },
-    { key: "type", label: "Type" },
-    { key: "context", label: "Context" },
-    { key: "description", label: "Description" }
-];
 
 let projects = [];
-let sortKey = null;
-let sortDirection = "ascending";
 
 function showStatus(message, showRetry) {
     dataMessage.textContent = message;
@@ -70,71 +66,56 @@ function hideStatus() {
     dataTable.classList.remove("is-hidden");
 }
 
-function getVisibleProjects() {
+function renderTable() {
     const query = dataSearch.value.trim().toLowerCase();
 
-    let visible = projects.filter((project) => {
-        if (!query) return true;
-        return columns.some((column) =>
-            String(project[column.key]).toLowerCase().includes(query)
+    const filteredProjects = projects.filter((project) => {
+        return (
+            project.name.toLowerCase().includes(query) ||
+            project.description.toLowerCase().includes(query)
         );
     });
 
-    if (sortKey) {
-        visible = visible.slice().sort((a, b) => {
-            const result = String(a[sortKey]).localeCompare(String(b[sortKey]), undefined, {
-                sensitivity: "base"
-            });
-            return sortDirection === "ascending" ? result : -result;
-        });
-    }
-
-    return visible;
-}
-
-function renderTable() {
-    const visible = getVisibleProjects();
-
     dataBody.textContent = "";
-    dataCount.textContent = visible.length + " of " + projects.length + " projects";
 
-    if (visible.length === 0) {
+    dataCount.textContent =
+        filteredProjects.length + " of " + projects.length + " projects";
+
+    if (filteredProjects.length === 0) {
         showStatus("No projects match your search.", false);
         return;
     }
 
     hideStatus();
 
-    visible.forEach((project) => {
+    filteredProjects.forEach((project) => {
+
         const row = document.createElement("tr");
 
-        columns.forEach((column) => {
-            const cell = document.createElement("td");
-            cell.setAttribute("data-label", column.label);
+        const nameCell = document.createElement("td");
+        nameCell.textContent = project.name;
+        nameCell.setAttribute("data-label", "Project");
 
-            if (column.key === "context") {
-                const badge = document.createElement("span");
-                badge.className = "badge";
-                badge.textContent = project[column.key];
-                cell.appendChild(badge);
-            } else {
-                cell.textContent = project[column.key];
-            }
+        const imageCell = document.createElement("td");
+        imageCell.setAttribute("data-label", "Screenshot");
 
-            row.appendChild(cell);
-        });
+        const image = document.createElement("img");
+        image.src = project.image;
+        image.alt = project.name + " screenshot";
+        image.className = "project-preview";
+
+        imageCell.appendChild(image);
+
+        const descriptionCell = document.createElement("td");
+        descriptionCell.textContent = project.description;
+        descriptionCell.setAttribute("data-label", "Description");
+
+        row.appendChild(nameCell);
+        row.appendChild(imageCell);
+        row.appendChild(descriptionCell);
 
         dataBody.appendChild(row);
-    });
-}
 
-function updateSortIndicators() {
-    sortButtons.forEach((button) => {
-        const header = button.parentElement;
-        header.setAttribute(
-            "aria-sort",
-            button.dataset.key === sortKey ? sortDirection : "none"
-        );
     });
 }
 
@@ -150,59 +131,100 @@ async function loadProjects() {
         }
 
         projects = await response.json();
+
         renderTable();
+
     } catch (error) {
         console.error("Could not load projects:", error);
-        showStatus("Could not load the project data. Please try again.", true);
+        showStatus("Could not load project data. Please try again.", true);
     }
 }
 
-sortButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        const key = button.dataset.key;
-
-        if (sortKey === key) {
-            sortDirection = sortDirection === "ascending" ? "descending" : "ascending";
-        } else {
-            sortKey = key;
-            sortDirection = "ascending";
-        }
-
-        updateSortIndicators();
-        renderTable();
-    });
-});
-
 dataSearch.addEventListener("input", renderTable);
+
 dataRetry.addEventListener("click", loadProjects);
 
 loadProjects();
 
+
+const imageModal = document.getElementById("image-modal");
+const enlargedImage = document.getElementById("enlarged-image");
+const imageCaption = document.getElementById("image-caption");
+const closeModal = document.getElementById("close-modal");
+
+function openImage(image) {
+    enlargedImage.src = image.src;
+    enlargedImage.alt = image.alt;
+    imageCaption.textContent = image.alt;
+
+    imageModal.classList.remove("is-hidden");
+}
+
+function hideImage() {
+    imageModal.classList.add("is-hidden");
+    enlargedImage.src = "";
+}
+
+dataBody.addEventListener("click", (event) => {
+    const image = event.target.closest(".project-preview");
+
+    if (image) {
+        openImage(image);
+    }
+});
+
+closeModal.addEventListener("click", hideImage);
+
+imageModal.addEventListener("click", (event) => {
+    if (event.target === imageModal) {
+        hideImage();
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        hideImage();
+    }
+});
+
+
+
 $(function () {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (prefersReducedMotion) return;
-
-    const $skillsCard = $("#skills .card");
+    const $skillsSection = $("#skills");
     const $chips = $(".skills-list li");
-    let chipsAnimated = false;
 
-    $chips.css({ opacity: 0, top: 25 });
+    function animateSkills() {
 
-    function animateChips() {
-        if (chipsAnimated) return;
+        const windowBottom = $(window).scrollTop() + $(window).height();
+        const skillsTop = $skillsSection.offset().top;
 
-        const triggerPoint = $(window).scrollTop() + $(window).height() - 120;
+        if (windowBottom > skillsTop + 100) {
 
-        if ($skillsCard.offset().top > triggerPoint) return;
+            $chips.each(function (index) {
 
-        chipsAnimated = true;
+                $(this)
+                    .stop(true)
+                    .delay(index * 120)
+                    .animate({
+                        opacity: 1,
+                        top: 0
+                    }, 400);
 
-        $chips.each(function (index) {
-            $(this).delay(index * 120).animate({ opacity: 1, top: 0 }, 400);
-        });
+            });
+
+        } else {
+
+            $chips.stop(true).css({
+                opacity: 0,
+                top: 25
+            });
+
+        }
     }
 
-    $(window).on("scroll", animateChips);
-    animateChips();
+    $(window).on("scroll", animateSkills);
+
+    animateSkills();
+
 });

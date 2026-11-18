@@ -1,11 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nabot Albert, Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel= "icon" href = "Profile.jpeg" type = "image/png">
+    <link rel="icon" href="Profile.jpeg" type="image/jpeg">
 </head>
 
 <body>
@@ -105,32 +107,54 @@
 
             <h2>Project Data</h2>
 
-            <p>This table is loaded from a JSON file using AJAX. Search it or click a column heading to sort.</p>
+            <p>
+                This table is loaded from a JSON file using AJAX.
+                Search for a project to find its information.
+            </p>
 
             <div class="card table-card">
 
                 <div class="table-toolbar">
-                    <input type="search" id="data-search" placeholder="Search projects..." aria-label="Search projects">
+
+                    <input
+                        type="search"
+                        id="data-search"
+                        placeholder="Search projects..."
+                        aria-label="Search projects"
+                    >
+
                     <span id="data-count"></span>
+
                 </div>
 
                 <div id="data-status" class="data-status" role="status">
                     <span id="data-message">Loading projects...</span>
-                    <button type="button" id="data-retry" class="retry-btn is-hidden">Try again</button>
+
+                    <button
+                        type="button"
+                        id="data-retry"
+                        class="retry-btn is-hidden"
+                    >
+                        Try again
+                    </button>
                 </div>
 
                 <div class="table-wrapper">
-                    <table class="timeline-table data-table is-hidden" id="data-table">
+
+                    <table class="data-table is-hidden" id="data-table">
+
                         <thead>
                             <tr>
-                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="name">Project</button></th>
-                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="type">Type</button></th>
-                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="context">Context</button></th>
-                                <th aria-sort="none"><button type="button" class="sort-btn" data-key="description">Description</button></th>
+                                <th>Project</th>
+                                <th>Screenshot</th>
+                                <th>Description</th>
                             </tr>
                         </thead>
+
                         <tbody id="data-body"></tbody>
+
                     </table>
+
                 </div>
 
             </div>
@@ -212,6 +236,18 @@
         </section>
 
     </main>
+
+    <div id="image-modal" class="image-modal is-hidden">
+
+        <button type="button" id="close-modal" class="close-modal" aria-label="Close image">
+            &times;
+        </button>
+
+        <img id="enlarged-image" src="" alt="Enlarged project screenshot">
+
+        <p id="image-caption"></p>
+
+    </div>
 
     <footer>
 

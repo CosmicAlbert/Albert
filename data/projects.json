@@ -1,38 +1,18 @@
+
 [
     {
+        "name": "NWR BI Portal",
+        "image": "nwr-portal.png",
+        "description": "A business intelligence dashboard designed to display financial information, reservations, occupancy rates, revenue and guest satisfaction."
+    },
+    {
         "name": "Phish Guard",
-        "type": "Mobile Application",
-        "context": "Hackathon",
-        "description": "Helps users detect phishing attacks in emails and SMS messages."
+        "image": "phish-guard.jpeg",
+        "description": "A Flutter-based application that uses AI-assisted analysis to identify phishing attacks in emails and SMS messages."
     },
     {
-        "name": "NWR Business Intelligence Portal",
-        "type": "Web Portal",
-        "context": "Hackathon",
-        "description": "Business Intelligence Portal integrating with the CiMSO Innkeeper ERP."
-    },
-    {
-        "name": "Student Internship Tracking Platform",
-        "type": "Web Application",
-        "context": "Group Project",
-        "description": "Django web app with student, lecturer and admin roles."
-    },
-    {
-        "name": "Food Delivery Microservices",
-        "type": "Backend Services",
-        "context": "Group Project",
-        "description": "Microservices-based food delivery system, where I built the Payment Service in Ballerina."
-    },
-    {
-        "name": "Valentine's Garage",
-        "type": "Android Application",
-        "context": "Academic",
-        "description": "Garage management system built as an academic assignment."
-    },
-    {
-        "name": "Namibia Rentals App",
-        "type": "Mobile Application",
-        "context": "Independent",
-        "description": "Rentals and property listings app for apartments, guest houses, lodges, houses and land."
+        "name": "Greg Analytics",
+        "image": "greg-analytics.jpeg",
+        "description": "An exercise tracking and analytics application that helps users monitor their physical activities, progress and performance."
     }
 ]

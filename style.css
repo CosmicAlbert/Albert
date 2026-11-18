@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -116,6 +117,8 @@ hr {
     display: none !important;
 }
 
+
+
 .hero {
     display: flex;
     align-items: center;
@@ -183,6 +186,8 @@ hr {
     margin-bottom: 0;
 }
 
+
+
 .skills-list {
     list-style: none;
     padding: 0;
@@ -202,6 +207,7 @@ hr {
     font-size: 14px;
 }
 
+
 .table-card {
     padding: 0;
     overflow: hidden;
@@ -219,9 +225,9 @@ hr {
 
 .data-table th,
 .data-table td {
-    padding: 14px 18px;
+    padding: 18px;
     text-align: left;
-    vertical-align: top;
+    vertical-align: middle;
     border-bottom: 1px solid #e1ece1;
 }
 
@@ -231,12 +237,12 @@ hr {
     font-size: 13px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    white-space: nowrap;
 }
 
 .data-table td:first-child {
     font-weight: bold;
     color: #26733b;
+    white-space: nowrap;
 }
 
 .data-table tbody tr {
@@ -251,14 +257,20 @@ hr {
     border-bottom: none;
 }
 
-.badge {
-    display: inline-block;
-    background-color: #e5f2e5;
-    color: #26733b;
-    padding: 3px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    white-space: nowrap;
+.project-preview {
+    width: 180px;
+    height: 110px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 7px;
+    border: 1px solid #d5e5d5;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.project-preview:hover {
+    transform: scale(1.03);
 }
 
 .table-toolbar {
@@ -324,35 +336,49 @@ hr {
     color: #31914b;
 }
 
-.sort-btn {
-    font: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
-    color: inherit;
+
+.image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+#image-caption {
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 30px;
     background: none;
     border: none;
-    padding: 0;
+    color: white;
+    font-size: 40px;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
 }
 
-.sort-btn::after {
-    content: "\2195";
-    font-size: 12px;
-    opacity: 0.45;
+.close-modal:hover {
+    color: #70c987;
 }
 
-th[aria-sort="ascending"] .sort-btn::after {
-    content: "\25B2";
-    opacity: 1;
-}
 
-th[aria-sort="descending"] .sort-btn::after {
-    content: "\25BC";
-    opacity: 1;
-}
 
 .project-container {
     display: grid;
@@ -415,6 +441,8 @@ th[aria-sort="descending"] .sort-btn::after {
     border-radius: 5px;
     font-size: 12px;
 }
+
+
 
 #contact a {
     text-decoration: none;
@@ -481,8 +509,7 @@ body.dark-mode .project-info h3 {
 }
 
 body.dark-mode .tech span,
-body.dark-mode .skills-list li,
-body.dark-mode .badge {
+body.dark-mode .skills-list li {
     background-color: #294832;
     color: #a5e6b5;
 }
@@ -503,6 +530,10 @@ body.dark-mode .data-table td:first-child {
 
 body.dark-mode .data-table tbody tr:hover {
     background-color: #223226;
+}
+
+body.dark-mode .project-preview {
+    border-color: #344b39;
 }
 
 body.dark-mode .table-toolbar {
@@ -560,11 +591,13 @@ body.dark-mode #theme-toggle:hover {
     color: #70c987;
 }
 
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
     }
 }
+
 
 @media (max-width: 600px) {
 
@@ -651,18 +684,34 @@ body.dark-mode #theme-toggle:hover {
     }
 
     .data-table td {
-        display: flex;
-        gap: 12px;
-        padding: 6px 18px;
+        display: block;
+        padding: 8px 18px;
         border-bottom: none;
         white-space: normal;
     }
 
     .data-table td::before {
         content: attr(data-label);
-        flex: 0 0 90px;
+        display: block;
         font-weight: bold;
         color: #26733b;
+        margin-bottom: 5px;
+    }
+
+    .project-preview {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    .image-modal img {
+        max-width: 100%;
+        max-height: 75vh;
+    }
+
+    .close-modal {
+        top: 5px;
+        right: 15px;
     }
 
     body.dark-mode .data-table tr {
